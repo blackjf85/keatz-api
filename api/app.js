@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+const v1AuthRouter = require("./v1/auth/auth-router");
+
 const helmet = require("helmet");
 const cors = require("cors");
 require("dotenv").config();
@@ -13,6 +15,8 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
+
+app.use("/v1/auth", v1AuthRouter);
 
 app.get("/", async (req, res, next) => {
   try {
