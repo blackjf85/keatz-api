@@ -18,7 +18,7 @@ app.get("/", async (req, res, next) => {
   try {
     res.json({
       status: "success",
-      message: "Welcome to the API",
+      message: "Welcome to the Keatz API",
     });
   } catch (err) {
     next(err);
