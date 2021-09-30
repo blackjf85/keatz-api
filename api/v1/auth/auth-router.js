@@ -27,7 +27,6 @@ router.post("/login", async (req, res, next) => {
   try {
     const user = await Auth.findByEmail(req.body.email);
     if (!user) {
-      console.log("no user");
       res.status(404).json({
         status: "fail",
         message: "Invalid email or password.",
@@ -35,13 +34,11 @@ router.post("/login", async (req, res, next) => {
     }
     const compare = await bcrypt.compare(req.body.password, user.password);
     if (!compare) {
-      console.log("password missmatch");
       res.status(404).json({
         status: "fail",
         message: "Invalid email or password.",
       });
     } else {
-      console.log("its a match");
       const token = makeToken(user);
       res.status(200).json({
         message: `Welcome ${user.firstname}`,
@@ -71,7 +68,6 @@ function makeToken(user) {
     expiresIn: "86400s",
   };
   const token = jwt.sign(payload, JWT_SECRET, options);
-  console.log(token);
   return token;
 }
 
