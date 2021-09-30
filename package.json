@@ -5,17 +5,28 @@
   "main": "server.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "migrateh": "heroku run knex migrate:latest -a keatz-api",
+    "rollbackh": "heroku run knex migrate:rollback -a keatz-api",
+    "databaseh": "heroku pg:psql -a keatz-api",
+    "seedh": "heroku run knex seed:run -a keatz-api",
+    "deploy": "git push heroku main"
   },
   "keywords": [],
   "author": "Jeremy Black",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
-    "morgan": "^1.10.0"
+    "knex": "^0.95.11",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
