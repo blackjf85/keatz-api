@@ -63,9 +63,10 @@ function makeToken(user) {
   const payload = {
     subject: user.userID,
     email: user.email,
+    premium: user.isPremium,
   };
   const options = {
-    expiresIn: "86400s",
+    expiresIn: "1d",
   };
   const token = jwt.sign(payload, JWT_SECRET, options);
   return token;

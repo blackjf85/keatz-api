@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 
-app.use("/v1/auth", v1AuthRouter);
+app.use("/api/v1/auth", v1AuthRouter);
 
 app.get("/", async (req, res, next) => {
   try {
