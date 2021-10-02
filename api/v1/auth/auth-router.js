@@ -6,10 +6,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const Auth = require("./auth-model");
+const { checkPayload } = require("./auth-middleware");
 
 const { JWT_SECRET, ROUNDS } = process.env;
 
-router.post("/register", async (req, res, next) => {
+router.post("/register", checkPayload, async (req, res, next) => {
   const newUser = req.body;
 
   try {
